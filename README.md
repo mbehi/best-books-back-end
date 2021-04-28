@@ -4,7 +4,7 @@
 
 **Version**: 1.0.0
 
-<a href="https://trello.com/b/qrG2StmE/am-best-books" align="center">📚 Best Books Trello board</a
+<a href="https://trello.com/b/qrG2StmE/am-best-books" align="center">📚 Best Books Trello board</a>
 
 ## Overview
 We will be creating a small app to track what books have impacted you, and what's recommended to read next.
@@ -31,6 +31,7 @@ This server will gather boook informationg from the Mongoose database
 <h2 align="center">⏰ T I M E . E S T I M A T E S ⏰ </h2>
 
 ## ⚙️️ Set up your back-end repository : Feature One
+
 ```sh
 best-books-back-end (repository)
 ├── models
@@ -45,16 +46,17 @@ best-books-back-end (repository)
 ```
 
 ```sh
-Estimate of time needed to complete: _____
-Start time: _____
-Finish time: _____
-Actual time needed to complete: _____
+Estimate of time needed to complete: 60 minutes
+Start time: 9:00
+Finish time: 9:46
+Actual time needed to complete: 46 minutes
 ```
 
 ## ⚙️ Storage : Feature Two
+
 > As a user, I'd like my books to persist, so that whenever I make changes, I can see the my full list of best books.As a user, I'd like my books to persist, so that whenever I make changes, I can see the my full list of best books.
 
-``sh
+```sh
 Estimate of time needed to complete: _____
 Start time: _____
 Finish time: _____
@@ -77,3 +79,11 @@ Actual time needed to complete: _____
 ## Resources
 
 [Reflections ⇒](reflections.md)
+
+---
+
+This work by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/AL0YSI0US/" property="cc:attributionName" rel="cc:attributionURL">AL0YSI0US</a> & <a href="https://github.com/mbehi">Mohsin</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+
+This license lets others distribute, remix, adapt, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials.
+
+<br>
