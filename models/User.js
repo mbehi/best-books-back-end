@@ -14,7 +14,14 @@ const bookSchema = new Schema({
   favoriteBooks: [activitySchema]
 });
 
-//model of the schema
-const Book = mongoose.model('Book', bookSchema);
+const userSchema = new Schema({
+  name: String,
+  email: String,
+  // array of activity Schema
+  books: [bookSchema]
+});
 
-module.exports = Book;
+//model of the schema
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
