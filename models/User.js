@@ -2,23 +2,20 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const activitySchema = new Schema({
-  activityName: String
-});
-
+// defining book properties and thier datatypes :
 const bookSchema = new Schema({
   name: String,
   description: String,
   status: String,
-  // array of activity Schema
-  favoriteBooks: [activitySchema]
 });
 
+// incldes the book schema 
+// user is an object that contains an array of book objects
 const userSchema = new Schema({
-  name: String,
-  email: String,
+  userName: String,
+  userEmail: String,
   // array of activity Schema
-  books: [bookSchema]
+  favoriteBooks: [bookSchema]
 });
 
 //model of the schema

@@ -16,18 +16,18 @@ require('dotenv').config();
 // hey mongoose, connect to the database at localhost:27017
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 // I’m intentionally requiring this model AFTER I run mongoose.connect
-const User = require('./models/User');
+const {User, userBookProfile} = require('./models/User');
 // seed the database with some books, so I can retrieve them
-const myBook = new User({
-  name: '',
+const userBookProfile = new User({
+  
+  userEmail: 'Aloysious',
   description: '',
   status: '',
   favoriteBooks: [
-    { bookName: '' },
-    { bookName: '' }, { bookName: '' }
+    { bookName: 'The Giver' },
+    { bookName: 'Beyond Inclusion, Beyond Empowerment' }, { bookName: 'The secret life of bees' }
   ]
-});
-myBook.save(function (err) {
+}); userBookProfile.save(function (err) {
   if (err) {
     console.err(err);
   } else {
@@ -37,19 +37,22 @@ myBook.save(function (err) {
 app.get('/', (request, response) => {
   response.send('hello, cool book!');
 });
-app.get('/books', (request, response) => {
-  // get all the books from the database
-  myBook.find((err, databaseResults) => {
-    // send them in my response
-    response.send(databaseResults);
-  });
-});
+// app.get('/books', (request, response) => {
+//   // get all the books from the database
+//   userBookProfile.find((err, databaseResults) => {
+//     // send them in my response
+//     response.send(databaseResults);
+//   });
+// });
 
 // route to get just one book
 app.get('/book', (request, response) => {
-  myBook.find({ name: request.query.name }, (err, databaseResults) => {
-  // send them in my response
-    response.send(databaseResults);
+  // set the user to access the query and email stuffs
+  let user = req.query.user;
+ userBookProfile.find({userEmail: user }, (err, databaseResults) => {
+  // send them in my response 
+  //  [results at zero for just the dataaaaaaaa]
+    response.send(databaseResults[0]);
   });
 });
 
