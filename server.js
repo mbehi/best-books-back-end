@@ -1,56 +1,53 @@
 'use strict';
-console.log('ooooh bring on the data!!!!!');
-
-const express = require('express');
-const app = express();
-
-// require mongoose
-const mongoose = require('mongoose');
+// console.log('ooooh bring on the data!!!!!!');
 
 require('dotenv').config();
-
+const express = require('express');
+const app = express();
 const cors = require('cors');
 app.use(cors());
 
-// hey mongoose, connect to the database at localhost:27017
+const PORT = 3001;
+
+// TODO: Add Mongoose
+const mongoose = require('mongoose');
+
+// TODO Make a call to the Database
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-// I’m intentionally requiring this model AFTER I run mongoose.connect
-const Book = require('./models/Book');
-// seed the database with some books, so I can retrieve them
-const my = new Book({
+
+const db = mongoose.connection; 
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', functon() { 
+  console.log('Are we connected to Mongoose?')
+});
+
+const userBookProfile = require('./models/User');
+
+const User = new userBookProfile({
   name: '',
   description: '',
-  status: true,
+  status: '',
   favoriteBooks: [
-    { bookName: '' },
-    { bookName: '' }, { bookName: '' }
+    { bookName: ''},
+    { bookName: ''},
+    { bookName: ''}
   ]
 });
-myBook.save(function (err) {
-  if (err) console.err(err);
-  else console.log('saved the book');
-});
-app.get('/', (request, response) => {
-  response.send('hello, cool book!');
-});
-app.get('/books', (request, response) => {
-  // get all the books from the database
-  Book.find((err, databaseResults) => {
-    // send them in my response
-    response.send(databaseResults);
-  });
-});
 
-// route to get just one book
-app.get('/book, (request, response) => {
-  Book.find({ name: request.query.name }, (err, databaseResults) => {
-  // send them in my response
-  response.send(databaseResults);
-});
+User.save();
 
+app.get('/user', getAllBooks)
 
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));
+function getAllBooks(request, response) {
+  const name = request.query.name;
+  console.log({name});
+  userBookProfile.find({name}, (err, person) => {
+    if(err) return console.error(err);
+    console.log({person})
+    response.send(person[0].cats);
+  })
+};
 
 console.log('❤️ hello aloysious & Mohsin . . . welcome to the back-end! ❤️');
+
+app.listen(PORT, () => console.log(`server is listening on port ${PORT}`));
