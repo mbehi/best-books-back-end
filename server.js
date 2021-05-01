@@ -10,24 +10,23 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // will need later
-// const cors = require('cors');
-// app.use(cors());
+const cors = require('cors');
+app.use(cors());
 
 // hey mongoose, connect to the database at localhost:27017
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 // I’m intentionally requiring this model AFTER I run mongoose.connect
 const User = require('./models/User');
+const { getMaxListeners } = require('./models/User');
 // seed the database with some books, so I can retrieve them
 const userProfile = new User({
   
   userEmail: 'aloysiousx@gmail.com',
-  description: '',
-  status: '',
   favoriteBooks: [
-    { bookName: 'The Giver' },
-    { bookName: 'Beyond Inclusion, Beyond Empowerment' }, { bookName: 'The secret life of bees' }
+    { name: 'The Giver' },
+    { name: 'Beyond Inclusion, Beyond Empowerment' }, { name: 'The secret life of bees' }
   ]
-}); 
+});
 
 userProfile.save().then(() => console.log('successfully saved'));
 
@@ -40,6 +39,7 @@ app.get('/', (request, response) => {
 app.get('/books', (request, response) => {
   // get all the books from the database
   User.find((err, databaseResults) => {
+    console.log(databaseResults);
     // send them in my response
     response.send(databaseResults[0]);
   });
@@ -49,8 +49,8 @@ app.get('/books', (request, response) => {
 app.get('/book', (request, response) => {
   // set the user to access the query and email stuffs
   let user = request.query.user;
- User.find({userEmail: user }, (err, databaseResults) => {
-  // send them in my response 
+User.find({userEmail: 'aloysiousx@gmail.com' }, (err, databaseResults) => {
+  // send them in my response
   //  [results at zero for just the dataaaaaaaa]
     response.send(databaseResults[0]);
   });
