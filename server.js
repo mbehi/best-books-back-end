@@ -41,7 +41,7 @@ app.get('/books', (request, response) => {
   User.find((err, databaseResults) => {
     console.log(databaseResults);
     // send them in my response
-    response.send(databaseResults[0]);
+    response.send(databaseResults[-1]);
   });
 });
 
@@ -50,8 +50,8 @@ app.get('/book', (request, response) => {
   // set the user to access the query and email stuffs
   let user = request.query.user;
 User.find({userEmail: 'aloysiousx@gmail.com' }, (err, databaseResults) => {
-  // send them in my response
   //  [results at zero for just the dataaaaaaaa]
+  // send them in my response
     response.send(databaseResults[0]);
   });
 });
