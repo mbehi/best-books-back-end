@@ -41,7 +41,7 @@ app.get('/books', (request, response) => {
   User.find((err, databaseResults) => {
     console.log(databaseResults);
     // send them in my response
-    response.send(databaseResults[-1]);
+    response.send(databaseResults[0]);
   });
 });
 
