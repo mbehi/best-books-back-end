@@ -90,6 +90,20 @@ app.post('/books', (request, response) => {
   });
 });
 
+app.delete('/books/:id', (request, response) => {
+  User.find({ email: request.query.email }, (error, databaseResults) => {
+    if(error) {
+      response.status(500).send(error);
+    }
+    if(databaseResults.length < 1) {
+      response.status(400).send('The User Is Not Here!');
+    } else {
+      const user = result[0];
+      user.books = user.books.filer(book => `${book._id}` !== request.params.id);
+      user.save().then()
+    }
+  })
+})
 
 const PORT = process.env.PORT || 3001;
 
